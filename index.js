@@ -8,6 +8,7 @@ const fastify = Fastify({
 fastify.register(require("@fastify/cors"), {
   origin: "*",
 });
+
 fastify.register(routes);
 
 const start = async () => {
