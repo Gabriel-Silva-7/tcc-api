@@ -5,6 +5,9 @@ const fastify = Fastify({
   logger: true,
 });
 
+fastify.register(require("@fastify/cors"), {
+  origin: "*",
+});
 fastify.register(routes);
 
 const start = async () => {
