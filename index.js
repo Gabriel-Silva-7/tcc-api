@@ -1,23 +1,14 @@
-const Fastify = require("fastify");
+const express = require("express");
+const cors = require("cors");
 const routes = require("./src/routes/index");
 
-const fastify = Fastify({
-  logger: true,
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use("/api", routes);
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
-
-fastify.register(require("@fastify/cors"), {
-  origin: "*",
-});
-
-fastify.register(routes);
-
-const start = async () => {
-  try {
-    await fastify.listen({ port: 3000 });
-    fastify.log.info(`Server listening on ${fastify.server.address().port}`);
-  } catch (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-};
-start();

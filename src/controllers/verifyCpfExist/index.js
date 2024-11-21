@@ -1,19 +1,19 @@
 const verifyCpfExistService = require("../../services/verifyCpfExist");
 
-const verifyCpfExistController = async (request, reply) => {
+const verifyCpfExistController = async (req, res) => {
   try {
-    const { cpf } = request.body;
+    const { cpf } = req.body;
     console.log(cpf);
     const response = await verifyCpfExistService(cpf);
     console.log(response);
 
     if (response) {
-      return reply.status(200).send({ response });
+      return res.status(200).send({ response });
     } else {
-      return reply.status(201).send({ response });
+      return res.status(201).send({ response });
     }
   } catch (error) {
-    return reply
+    return res
       .status(500)
       .send({ message: "Internal server error", error: error.message });
   }

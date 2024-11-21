@@ -1,11 +1,11 @@
 const verifyUserExist = require("../../services/verifyUserExist");
 
-async function verifyUserExistController(request, reply) {
-  const { email } = request.body;
+async function verifyUserExistController(req, res) {
+  const { email } = req.body;
   console.log("email", email);
 
   if (!email) {
-    return reply.status(400).send({ error: "Email is required" });
+    return res.status(400).send({ error: "Email is required" });
   }
 
   try {
@@ -13,15 +13,15 @@ async function verifyUserExistController(request, reply) {
     console.log(userExists);
 
     if (userExists) {
-      return reply.status(200).send({ message: "User exists", value: true });
+      return res.status(200).send({ message: "User exists", value: true });
     } else {
-      return reply
+      return res
         .status(201)
         .send({ message: "User does not exist", value: false });
     }
   } catch (error) {
     console.error("Error in verifyUserExistController:", error);
-    return reply.status(500).send({ error: "Internal server error" });
+    return res.status(500).send({ error: "Internal server error" });
   }
 }
 
