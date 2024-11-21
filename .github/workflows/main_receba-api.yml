@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: "20.x"
+          node-version: '20.x'
 
       - name: npm install, build, and test
         run: |
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: "Production"
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
@@ -53,18 +53,19 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A1FB9BC6B6B44BDDA9002962C0323750 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E061B985F7884AC087E79B4F736F319B }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_25B9153D071A402F8D6C483F17C83033 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B452B84E6FB54C85BABAB07634EFE9D6 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DE2C6C0DFA44471C91D1870F4B986FEE }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3805E4A66B7A4A2FB9C8DE7AD90F406A }}
 
-      - name: "Deploy to Azure Web App"
+      - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: "receba-api"
-          slot-name: "Production"
+          app-name: 'receba-api'
+          slot-name: 'Production'
           package: .
+          
