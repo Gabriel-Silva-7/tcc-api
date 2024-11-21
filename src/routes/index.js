@@ -5,10 +5,10 @@ const verifyCpfExistController = require("../controllers/verifyCpfExist");
 const verifyUserExistController = require("../controllers/verifyUserExist");
 
 router.get("/", (req, res) => {
-  res.status(200).send({ message: "Hello World" });
+  res.status(200).send({ message: "Hello World", seuIp: req.ip });
 });
 router.post("/createuser", createUser);
 router.post("/verifyuser", verifyUserExistController);
-router.post("/verifyCpf", verifyCpfExistController);
+router.post("/verifycpf", verifyCpfExistController);
 
 module.exports = router;

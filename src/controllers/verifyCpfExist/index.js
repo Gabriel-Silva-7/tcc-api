@@ -8,9 +8,9 @@ const verifyCpfExistController = async (req, res) => {
     console.log(response);
 
     if (response) {
-      return res.status(200).send({ response });
+      return res.status(200).send({ response, value: true });
     } else {
-      return res.status(201).send({ response });
+      return res.status(201).send({ value: false });
     }
   } catch (error) {
     return res
