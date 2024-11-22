@@ -11,5 +11,5 @@ router.get("/", (req, res) => {
 router.post("/createuser", createUser);
 router.post("/verifyuser", verifyUserExistController);
 router.post("/verifycpf", verifyCpfExistController);
-router.get("/verifyLocker", verifyLockerStatusController);
+router.post("/verifyLocker", verifyLockerStatusController);
 module.exports = router;
