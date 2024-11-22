@@ -3,25 +3,30 @@ const { QueryTypes } = require("sequelize");
 
 async function verifyCpfExist(cpf) {
   try {
-    const result = await sequelize.query(
+    const moradores = await sequelize.query(
       "SELECT * FROM Moradores WHERE cpf = :cpf",
       {
         replacements: { cpf },
         type: QueryTypes.SELECT,
       }
     );
-    console.log(result);
 
-    if (result.length > 0) {
-      const response = await sequelize.query(
-        "SELECT * FROM Unidades WHERE IdUnidade = :IdUnidade",
+    if (moradores.length > 0) {
+      const idMorador = moradores[0].IdMorador;
+
+      const unidades = await sequelize.query(
+        `SELECT u.*, c.NomeCondominio
+         FROM Unidades u
+         JOIN MoradoresUnidades mu ON mu.IdUnidade = u.IdUnidade
+         JOIN Condominios c ON c.IdCondominio = u.IdCondominio
+         WHERE mu.IdMorador = :idMorador`,
         {
-          replacements: { IdUnidade: result[0].IdUnidade },
+          replacements: { idMorador },
           type: QueryTypes.SELECT,
         }
       );
 
-      return response[0];
+      return unidades;
     } else {
       return null;
     }

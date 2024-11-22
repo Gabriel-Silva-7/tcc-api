@@ -2,7 +2,6 @@ const verifyUserExist = require("../../services/verifyUserExist");
 
 async function verifyUserExistController(req, res) {
   const { email } = req.body;
-  console.log("email", email);
 
   if (!email) {
     return res.status(400).send({ error: "Email is required" });
@@ -10,7 +9,6 @@ async function verifyUserExistController(req, res) {
 
   try {
     const userExists = await verifyUserExist(email);
-    console.log(userExists);
 
     if (userExists) {
       return res.status(200).send({ message: "User exists", value: true });

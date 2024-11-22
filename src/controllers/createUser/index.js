@@ -1,22 +1,18 @@
-const db = require("../../config/db");
+const createUserService = require("../../services/createUser");
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const body = req.body;
 
-    const user = { name, email, password };
-
-    console.log(name, email, password);
+    const createUser = await createUserService(body);
 
     res.status(201).send({
       message: "User created successfully",
-
-      user,
+      body,
     });
   } catch (error) {
     res.status(500).send({
       message: "Error creating user",
-
       error: error.message,
     });
   }
