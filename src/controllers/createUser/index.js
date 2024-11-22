@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
       body,
     });
   } catch (error) {
-    res.status(500).send({
+    res.status(error.status).send({
       message: "Error creating user",
       error: error.message,
     });

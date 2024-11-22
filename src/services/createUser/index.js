@@ -20,7 +20,9 @@ async function createUser(userData) {
     );
 
     if (existingUser[0].count > 0) {
-      throw new Error("User already exists");
+      const error = new Error("User already exists");
+      error.status = 409;
+      throw error;
     }
 
     await sequelize.query(
