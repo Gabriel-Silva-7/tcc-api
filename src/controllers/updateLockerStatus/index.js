@@ -1,7 +1,7 @@
 const updateLockerStatus = require("../../services/updateLockerStatus");
 
 async function updateLockerStatusController(req, res) {
-  const { idLocker, status, busy, idUser } = req.body;
+  const { idLocker, status, idUser } = req.body;
 
   if (!idLocker) {
     return res.status(400).send({ error: "Id Locker is required" });
