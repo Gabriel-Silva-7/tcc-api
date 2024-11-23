@@ -1,19 +1,23 @@
 const verifyLockerStatus = require("../../services/verifyLockerStatus");
 
 async function verifyLockerStatusController(req, res) {
-  const { idLocker } = req.body;
-  console.log("Locker", idLocker);
+  const { idLocker, fdcurso } = req.body;
+  console.log("idLocker", idLocker);
+  console.log("fdcurso", fdcurso);
 
   if (!idLocker) {
     return res.status(400).send({ error: "Id Locker is required" });
   }
 
   try {
-    const lockerStatus = await verifyLockerStatus(idLocker);
-    console.log(lockerStatus);
+    const objLocker = await verifyLockerStatus(idLocker);
+    console.log(objLocker);
 
-    if (lockerStatus) {
-      return res.status(200).send({ status: lockerStatus });
+    if (objLocker) {
+      return res.status(200).send({
+        status: objLocker.status,
+        busy: objLocker.busy,
+      });
     } else {
       return res
         .status(201)
