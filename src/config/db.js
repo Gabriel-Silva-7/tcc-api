@@ -9,6 +9,12 @@ const sequelize = new Sequelize(
     host: config.dbHost,
     port: config.dbPort,
     dialect: "mssql",
+    pool: {
+      max: 10,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
     dialectOptions: {
       options: {
         encrypt: true,
