@@ -20,21 +20,14 @@ async function verifyLockerStatusController(req, res) {
     if (fdCurso == 1) {
       now = moment();
       const dataFimDeCurso = moment(objLocker.DatafdCurso);
-      const diferencaMinutos = now.diff(dataFimDeCurso, "seconds");
+      const diferencaMinutos = now.diff(dataFimDeCurso, "minutes");
 
-      console.log(`dataFimDeCurso: ${dataFimDeCurso}`);
-      console.log(`objLocker.DataFimDeCurso: ${objLocker.DatafdCurso}`);
-      console.log(`now: ${now}`);
-      console.log(`Diferença: ${diferencaMinutos}`);
-
-      if (diferencaMinutos > 10) {
+      if (diferencaMinutos > 2) {
         timeOpen = 1;
       }
     } else {
       timeOpen = 0;
     }
-
-    console.log(`timeOpen: ${timeOpen}`);
 
     if (objLocker) {
       return res.status(200).send({
