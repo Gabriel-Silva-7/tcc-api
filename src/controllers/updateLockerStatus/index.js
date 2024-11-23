@@ -9,8 +9,6 @@ async function updateLockerStatusController(req, res) {
 
   try {
     const lockerStatus = await updateLockerStatus(req.body);
-    console.log(lockerStatus);
-
     if (lockerStatus) {
       return res.status(200).send(lockerStatus);
     } else {
