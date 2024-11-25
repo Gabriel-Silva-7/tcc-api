@@ -3,13 +3,11 @@ const getHistoryLocker = require("../../services/getHistoryLocker");
 const getHistoryLockerController = async (req, res) => {
   try {
     const body = req.body;
+    console.log(body);
 
-    const getHistory = await getHistoryLocker(body);
+    const response = await getHistoryLocker(body);
 
-    res.status(201).send({
-      message: "Locker history get successfully",
-      getHistory,
-    });
+    res.status(201).send(response);
   } catch (error) {
     console.log(error);
     res.status(error.status).send({

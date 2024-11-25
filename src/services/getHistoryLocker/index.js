@@ -13,7 +13,7 @@ async function getHistoryLocker(userEmail) {
         type: QueryTypes.SELECT,
       }
     );
-    const getHistoryUser = await sequelize.query(
+    const response = await sequelize.query(
       `SELECT 
             IdLocker,
             DataHoraEntrega, 
@@ -29,7 +29,7 @@ async function getHistoryLocker(userEmail) {
         type: QueryTypes.SELECT,
       }
     );
-    return getHistoryUser;
+    return response;
   } catch (error) {
     console.error("Error getting locker history:", error);
     throw error;

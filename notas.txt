@@ -1,0 +1,5 @@
+Rota Motoboy
+--Validar se tem locker disponivel
+--Preencher formulario(primeira coisa listar lockers disponiveis por tamanho) Apto da entrega, informações do entregador(nome, documento(matheuzinho vai ver no ap dele)) 
+--Realize a entrega no locker 01 (botao de desbloquear locker)
+--Confirmar entrega(opcional foto da entrega)
