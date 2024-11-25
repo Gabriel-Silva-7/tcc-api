@@ -12,6 +12,8 @@ const updateLockerHistoryController = require("../controllers/updateHistoryLocke
 const getHistoryLockerController = require("../controllers/getHistoryLocker");
 const getLastHistoryLockerController = require("../controllers/getLastHistoryLocker");
 const getLockerNotBusyController = require("../controllers/getLockerNotBusy");
+const getBlockPerCondominiumController = require("../controllers/getBlockPerCondominium");
+const getApartmentPerBlockController = require("../controllers/getApartmentPerBlock");
 
 const loginUser = require("../controllers/login");
 const authenticateJWT = require("../middleware");
@@ -26,6 +28,8 @@ router.post("/updateUser", authenticateJWT, updateUserController);
 router.post("/verifycpf", verifyCpfExistController);
 router.post("/verifyLocker", authenticateJWT, verifyLockerStatusController);
 router.post("/updateLocker", authenticateJWT, updateLockerStatusController);
+router.post("/getBlock", getBlockPerCondominiumController);
+router.post("/getApartment", getApartmentPerBlockController);
 router.post(
   "/createLockerHistory",
   authenticateJWT,
