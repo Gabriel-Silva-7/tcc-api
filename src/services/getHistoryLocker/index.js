@@ -16,12 +16,14 @@ async function getHistoryLocker(userEmail) {
     const response = await sequelize.query(
       `SELECT 
             IdLocker,
+            IdHistorico,
             DataHoraEntrega, 
             DataHoraRetirada 
         FROM 
             LockerHistorico
         WHERE
-          IdUsuario = :IdUsuario`,
+          IdUsuario = :IdUsuario
+        ORDER BY IdHistorico DESC`,
       {
         replacements: {
           IdUsuario: getIdUser[0].IdUsuario,
