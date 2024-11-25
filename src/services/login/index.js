@@ -14,6 +14,7 @@ async function loginUser(loginData) {
         type: QueryTypes.SELECT,
       }
     );
+
     const unidades = await sequelize.query(
       `SELECT u.*, c.NomeCondominio
        FROM Unidades u
@@ -35,7 +36,7 @@ async function loginUser(loginData) {
 
     const isPasswordValid = await bcrypt.compare(password, user[0].Senha);
     const token = jwt.sign(
-      { email: email, unidades: unidades },
+      { email: email, unidades: unidades, nome: user[0].Nome },
       process.env.JWT_SECRET,
       {
         expiresIn: "1h",
