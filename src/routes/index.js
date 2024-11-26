@@ -15,6 +15,7 @@ const getLockerNotBusyController = require("../controllers/getLockerNotBusy");
 const getBlockPerCondominiumController = require("../controllers/getBlockPerCondominium");
 const getApartmentPerBlockController = require("../controllers/getApartmentPerBlock");
 const getUserPerAddressController = require("../controllers/getUserPerAddress");
+const createHelpController = require("../controllers/createHelp");
 
 const loginUser = require("../controllers/login");
 const authenticateJWT = require("../middleware");
@@ -23,6 +24,7 @@ router.get("/", (req, res) => {
   res.status(200).send({ helloWolrd: "helloWolrd!" });
 });
 router.post("/createuser", createUser);
+router.post("/createHelp", createHelpController);
 router.post("/verifyuser", verifyUserExistController);
 router.post("/userDetails", authenticateJWT, getUserDetailsController);
 router.post("/updateUser", authenticateJWT, updateUserController);
