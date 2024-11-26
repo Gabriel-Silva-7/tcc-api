@@ -2,7 +2,7 @@ const { get } = require("http");
 const sequelize = require("../../config/db");
 const { QueryTypes } = require("sequelize");
 
-async function getlockerNotBusy(tamanho) {
+async function getlockerNotBusy(tamanho, idCondominio) {
   try {
     const getlockerNotBusy = await sequelize.query(
       ` SELECT 
@@ -11,10 +11,12 @@ async function getlockerNotBusy(tamanho) {
             Locker 
         WHERE 
             Ocupado = 0 AND 
-            Tamanho = :tamanho`,
+            Tamanho = :tamanho AND
+            IdCondominio = :idCondominio`,
       {
         replacements: {
           tamanho: tamanho,
+          idCondominio: idCondominio,
         },
         type: QueryTypes.SELECT,
       }
