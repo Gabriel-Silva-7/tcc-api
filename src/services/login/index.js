@@ -41,6 +41,7 @@ async function loginUser(loginData) {
         unidades: unidades,
         nome: user[0].Nome,
         userId: user[0].IdUsuario,
+        isAdmin: user[0].IsAdmin,
       },
       process.env.JWT_SECRET,
       {

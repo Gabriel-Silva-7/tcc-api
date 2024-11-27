@@ -23,7 +23,8 @@ async function getUserDetails(email) {
           u.Email,
           con.Endereco,
           con.NomeCondominio,
-          unid.Apartamento  
+          unid.Apartamento,
+          u.Imagem
         FROM 
           Usuarios u
         JOIN 

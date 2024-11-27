@@ -22,6 +22,7 @@ const createMoradorController = require("../controllers/createMorador");
 
 const loginUser = require("../controllers/login");
 const authenticateJWT = require("../middleware");
+const { saveUserImageController } = require("../controllers/userImage");
 
 router.get("/", (req, res) => {
   res.status(200).send({ helloWolrd: "helloWolrd!" });
@@ -54,4 +55,5 @@ router.post(
 );
 router.post("/getLockerNotBusy", getLockerNotBusyController);
 router.post("/login", loginUser);
+router.post("/saveuserimage", saveUserImageController);
 module.exports = router;
