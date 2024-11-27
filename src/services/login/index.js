@@ -36,7 +36,12 @@ async function loginUser(loginData) {
 
     const isPasswordValid = await bcrypt.compare(password, user[0].Senha);
     const token = jwt.sign(
-      { email: email, unidades: unidades, nome: user[0].Nome },
+      {
+        email: email,
+        unidades: unidades,
+        nome: user[0].Nome,
+        userId: user[0].IdUsuario,
+      },
       process.env.JWT_SECRET,
       {
         expiresIn: "1h",

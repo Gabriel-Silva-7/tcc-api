@@ -30,20 +30,12 @@ router.post("/userDetails", authenticateJWT, getUserDetailsController);
 router.post("/updateUser", authenticateJWT, updateUserController);
 router.post("/verifycpf", verifyCpfExistController);
 router.post("/verifyLocker", authenticateJWT, verifyLockerStatusController);
-router.post("/updateLocker", authenticateJWT, updateLockerStatusController);
+router.post("/updateLocker", updateLockerStatusController);
 router.post("/getBlock", getBlockPerCondominiumController);
 router.post("/getApartment", getApartmentPerBlockController);
 router.post("/getUserPerAddress", getUserPerAddressController);
-router.post(
-  "/createLockerHistory",
-  authenticateJWT,
-  createLockerHistoryController
-);
-router.post(
-  "/updateLockerHistory",
-  authenticateJWT,
-  updateLockerHistoryController
-);
+router.post("/createLockerHistory", createLockerHistoryController);
+router.post("/updateLockerHistory", updateLockerHistoryController);
 router.post("/getLockerHistory", authenticateJWT, getHistoryLockerController);
 router.post(
   "/getLastLockerHistory",
