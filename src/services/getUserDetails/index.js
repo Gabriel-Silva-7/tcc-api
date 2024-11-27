@@ -22,6 +22,7 @@ async function getUserDetails(email) {
           u.Celular,
           u.Email,
           con.Endereco,
+          con.NomeCondominio,
           unid.Apartamento  
         FROM 
           Usuarios u
