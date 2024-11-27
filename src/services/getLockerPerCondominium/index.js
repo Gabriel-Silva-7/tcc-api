@@ -18,6 +18,7 @@ async function getLockerPerCondominio(email) {
     const result = await sequelize.query(
       `SELECT
             l.IdLocker,
+            l.Status,
             l.Ocupado,
             l.Tamanho
         FROM 
