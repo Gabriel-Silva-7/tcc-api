@@ -36,22 +36,22 @@ cron.schedule("*/1 * * * *", async () => {
         type: QueryTypes.UPDATE,
       }
     );
-    const res2 = await sequelize.query(
-      `
-      UPDATE Locker
-      SET Status = 0
-      WHERE IdLocker IN (
-      SELECT IdLocker
-        FROM LockerHistorico
-        WHERE CURRENT_TIMESTAMP > DATEADD(MINUTE, 2, DataHoraEntrega)
-      ) AND status = 1
-    `,
-      {
-        type: QueryTypes.UPDATE,
-      }
-    );
+    // const res2 = await sequelize.query(
+    //   `
+    //   UPDATE Locker
+    //   SET Status = 0
+    //   WHERE IdLocker IN (
+    //   SELECT IdLocker
+    //     FROM LockerHistorico
+    //     WHERE CURRENT_TIMESTAMP > DATEADD(MINUTE, 2, DataHoraEntrega)
+    //   ) AND status = 1
+    // `,
+    //   {
+    //     type: QueryTypes.UPDATE,
+    //   }
+    // );
     console.log(`Updated ${res[1]} rows`);
-    console.log(`Updated ${res2[1]} rows`);
+    // console.log(`Updated ${res2[1]} rows`);
   } catch (err) {
     console.error("Error running cron job", err);
   }
