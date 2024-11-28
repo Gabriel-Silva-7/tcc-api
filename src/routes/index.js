@@ -19,6 +19,8 @@ const createHelpController = require("../controllers/createHelp");
 const verifyUserAdminController = require("../controllers/verifyUserAdmin");
 const getLockerPerCondominiumController = require("../controllers/getLockerPerCondominium");
 const createMoradorController = require("../controllers/createMorador");
+const getMyResidentsController = require("../controllers/getMyResidents");
+const updateResidentController = require("../controllers/updateResident");
 
 const loginUser = require("../controllers/login");
 const authenticateJWT = require("../middleware");
@@ -40,6 +42,8 @@ router.post("/getUserPerAddress", getUserPerAddressController);
 router.post("/createLockerHistory", createLockerHistoryController);
 router.post("/updateLockerHistory", updateLockerHistoryController);
 router.post("/verifyUserAdmin", authenticateJWT, verifyUserAdminController);
+router.post("/getMyResidents", authenticateJWT, getMyResidentsController);
+router.post("/updateResident", authenticateJWT, updateResidentController);
 router.post(
   "/getLockerPerCondominium",
   authenticateJWT,
