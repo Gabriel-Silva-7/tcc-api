@@ -20,39 +20,36 @@ app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
 
-cron.schedule("*/2 * * * *", async () => {
-  try {
-    const res = await sequelize.query(
-      `
-      UPDATE Locker
-      SET Status = 0
-      WHERE IdLocker IN (
-      SELECT IdLocker
-        FROM LockerHistorico
-        WHERE CURRENT_TIMESTAMP > DATEADD(MINUTE, 2, DataHoraEntrega) AND DataHoraRetirada is null
-      ) AND status = 1
-    `,
-      {
-        type: QueryTypes.UPDATE,
-      }
-    );
-    // const res2 = await sequelize.query(
-    //   `
-    //   UPDATE Locker
-    //   SET Status = 0
-    //   WHERE IdLocker IN (
-    //   SELECT IdLocker
-    //     FROM LockerHistorico
-    //     WHERE CURRENT_TIMESTAMP > DATEADD(MINUTE, 2, DataHoraEntrega)
-    //   ) AND status = 1
-    // `,
-    //   {
-    //     type: QueryTypes.UPDATE,
-    //   }
-    // );
-    console.log(`Updated ${res[1]} rows`);
-    // console.log(`Updated ${res2[1]} rows`);
-  } catch (err) {
-    console.error("Error running cron job", err);
-  }
-});
+// cron.schedule("*/2 * * * *", async () => {
+//   try {
+//     const res = await sequelize.query(
+//       `
+//       UPDATE Locker
+//       SET Status = 0
+//       WHERE CURRENT_TIMESTAMP > DATEADD(MINUTE, 2, LastUpdateLockerStatus) AND LastUpdateLockerStatus is null
+//       AND Status = 1
+//     `,
+//       {
+//         type: QueryTypes.UPDATE,
+//       }
+//     );
+//     // const res2 = await sequelize.query(
+//     //   `
+//     //   UPDATE Locker
+//     //   SET Status = 0
+//     //   WHERE IdLocker IN (
+//     //   SELECT IdLocker
+//     //     FROM LockerHistorico
+//     //     WHERE CURRENT_TIMESTAMP > DATEADD(MINUTE, 2, DataHoraEntrega)
+//     //   ) AND status = 1
+//     // `,
+//     //   {
+//     //     type: QueryTypes.UPDATE,
+//     //   }
+//     // );
+//     console.log(`Updated ${res[1]} rows`);
+//     // console.log(`Updated ${res2[1]} rows`);
+//   } catch (err) {
+//     console.error("Error running cron job", err);
+//   }
+// });
