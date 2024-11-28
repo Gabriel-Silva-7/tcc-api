@@ -21,7 +21,8 @@ async function verifyLockerStatusController(req, res) {
       now = moment();
       const dataFimDeCurso = moment(objLocker.DatafdCurso);
       const diferencaMinutos = now.diff(dataFimDeCurso, "minutes");
-
+      console.log(diferencaMinutos, "df");
+      console.log(diferencaMinutos > 2);
       if (diferencaMinutos > 2) {
         timeOpen = 1;
       }

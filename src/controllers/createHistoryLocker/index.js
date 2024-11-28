@@ -6,10 +6,7 @@ const createHistoryLockerController = async (req, res) => {
 
     const createHistory = await createHistoryLocker(body);
 
-    res.status(201).send({
-      message: "Locker History created successfully",
-      body,
-    });
+    res.status(201).send(createHistory[0]);
   } catch (error) {
     res.status(error.status).send({
       message: "Error creating locker history",

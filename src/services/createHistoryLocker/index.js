@@ -26,8 +26,9 @@ async function createHistoryLocker(history) {
       throw error;
     }
     const result = await sequelize.query(
-      `INSERT INTO LockerHistorico (IdLocker, IdUsuario, Fase, DataHoraEntrega, Acao)
-       VALUES (:IdLocker, :IdUsuario, 'Entrega', GETDATE(), 'Desbloqueio')`,
+      ` INSERT INTO LockerHistorico (IdLocker, IdUsuario, Fase, DataHoraEntrega, Acao)
+        OUTPUT INSERTED.IdHistorico
+        VALUES (:IdLocker, :IdUsuario, 'Entrega', GETDATE(), 'Desbloqueio');`,
       {
         replacements: {
           IdLocker: idLocker,
@@ -36,15 +37,7 @@ async function createHistoryLocker(history) {
         type: QueryTypes.INSERT,
       }
     );
-    const getIdHistory = await sequelize.query(
-      `SELECT TOP 1 IdHistorico
-        FROM LockerHistorico
-        ORDER BY IdHistorico DESC;`,
-      {
-        type: QueryTypes.SELECT,
-      }
-    );
-    return getIdHistory[0].IdHistorico;
+    return result;
   } catch (error) {
     console.error("Error registering delivery:", error);
     throw error;
