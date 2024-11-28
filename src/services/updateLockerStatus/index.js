@@ -3,6 +3,7 @@ const { QueryTypes } = require("sequelize");
 
 async function updateLockerStatus(lockerData) {
   const { idLocker, status, idUser } = lockerData;
+  console.log("lockerData", lockerData);
   try {
     if (!idUser == "" && !idUser == null) {
       const existingUser = await sequelize.query(

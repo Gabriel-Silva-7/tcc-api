@@ -22,6 +22,7 @@ const createMoradorController = require("../controllers/createMorador");
 const getMyResidentsController = require("../controllers/getMyResidents");
 const updateResidentController = require("../controllers/updateResident");
 const getFaseLockerController = require("../controllers/getFaseLocker");
+const sendEmailController = require("../controllers/sendEmail");
 
 const loginUser = require("../controllers/login");
 const authenticateJWT = require("../middleware");
@@ -62,4 +63,5 @@ router.post(
 router.post("/getLockerNotBusy", getLockerNotBusyController);
 router.post("/login", loginUser);
 router.post("/saveuserimage", saveUserImageController);
+router.post("/sendEmail", sendEmailController);
 module.exports = router;

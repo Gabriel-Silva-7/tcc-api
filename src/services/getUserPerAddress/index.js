@@ -5,7 +5,8 @@ async function getUserPerAddress(idCondominio, block, idApartment) {
   try {
     const getUser = await sequelize.query(
       `   SELECT 
-	        u.IdUsuario
+	        u.IdUsuario,
+          u.Email
         FROM 
 	        Usuarios u
         JOIN 
