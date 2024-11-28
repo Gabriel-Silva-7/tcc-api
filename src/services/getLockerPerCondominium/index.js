@@ -20,7 +20,8 @@ async function getLockerPerCondominio(email) {
             l.IdLocker,
             l.Status,
             l.Ocupado,
-            l.Tamanho
+            l.Tamanho,
+            con.NomeCondominio as Condominio
         FROM 
             Usuarios u
         JOIN 
