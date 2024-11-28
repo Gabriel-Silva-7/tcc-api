@@ -20,12 +20,13 @@ async function updateLockerStatus(lockerData) {
     }
 
     const result = await sequelize.query(
-      "UPDATE Locker " +
-        "SET " +
-        "  Status     = :status" +
-        ", Ocupado    = CASE WHEN :idUser IS NULL OR :idUser = '' THEN 0 ELSE 1 END " +
-        ", IdUsuario  = CASE WHEN :idUser IS NULL OR :idUser = '' THEN NULL ELSE :idUser END " +
-        "WHERE IdLocker = :idLocker",
+      `UPDATE Locker
+        SET
+          Status     = :status,
+          Ocupado    = CASE WHEN :idUser IS NULL OR :idUser = '' THEN 0 ELSE 1 END,
+          IdUsuario  = CASE WHEN :idUser IS NULL OR :idUser = '' THEN NULL ELSE :idUser END,
+          LastUpdateLockerStatus = GETDATE()
+        WHERE IdLocker = :idLocker`,
       {
         replacements: {
           status: status,
